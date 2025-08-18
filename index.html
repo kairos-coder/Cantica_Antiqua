@@ -1,138 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cantica Antiqua in Old Saxon</title>
-    <!-- Fonts for classic manuscript style -->
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Cormorant+Garamond:wght@700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            background: #f5ecd7 url('https://raw.githubusercontent.com/kairos-coder/Book_of_Mategwas_HTML/main/parchment2.jpg') repeat;
-            font-family: 'EB Garamond', serif;
-            color: #372a16;
-        }
-        .main-container {
-            max-width: 900px;
-            margin: 48px auto;
-            background: rgba(255,255,255,0.93);
-            border-radius: 25px;
-            box-shadow: 0 10px 44px #b1a06e55, 0 1.5px 0 #bda45e inset;
-            border: 4px solid #e9ddb7;
-            padding: 32px 28px 40px 28px;
-            position: relative;
-        }
-        .title {
-            font-family: 'Cormorant Garamond', 'EB Garamond', serif;
-            font-size: 2.6em;
-            color: #603d16;
-            letter-spacing: 1.5px;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 0.2em;
-            margin-top: 0;
-        }
-        .subtitle {
-            text-align: center;
-            font-size: 1.25em;
-            color: #7b5e2b;
-            font-style: italic;
-            margin-bottom: 1.7em;
-            margin-top: 0;
-        }
-        .section-title {
-            font-family: 'Cormorant Garamond', 'EB Garamond', serif;
-            font-size: 1.65em;
-            color: #6c4716;
-            font-weight: bold;
-            margin-top: 1.8em;
-            margin-bottom: 0.6em;
-            letter-spacing: 1px;
-        }
-        .ornamental-hr {
-            border: none;
-            width: 220px;
-            height: 18px;
-            margin: 1.5em auto 2em auto;
-            display: block;
-            background: transparent url('https://raw.githubusercontent.com/kairos-coder/Book_of_Mategwas_HTML/main/vine-hr.png') center/contain no-repeat;
-        }
-        .about-text {
-            font-size: 1.07em;
-            color: #47351d;
-            margin-bottom: 1.6em;
-            line-height: 1.5;
-        }
-        .dropcap {
-            float: left;
-            font-size: 2.7em;
-            line-height: 0.8;
-            color: #b39256;
-            font-family: 'Cormorant Garamond', 'EB Garamond', serif;
-            padding-right: 0.18em;
-            font-weight: bold;
-            text-shadow: 1px 1px 0 #e9ddb7;
-        }
-        .poem-section {
-            font-size: 1.13em;
-            background: rgba(255,255,255,0.89);
-            border-radius: 14px;
-            border: 1.5px solid #e9ddb7;
-            padding: 2.1em 1.1em 2.1em 1.1em;
-            margin-top: 1.5em;
-            box-shadow: 0 2px 12px #b3925625;
-            white-space: pre-wrap;
-            overflow-x: auto;
-            max-height: 75vh;
-        }
-        /* Custom scrollbar for poem-section */
-        .poem-section::-webkit-scrollbar {
-            width: 10px;
-        }
-        .poem-section::-webkit-scrollbar-thumb {
-            background: #cbb98b;
-            border-radius: 6px;
-        }
-        .poem-section::-webkit-scrollbar-track {
-            background: #e9ddb7;
-        }
-        @media (max-width: 650px) {
-            .main-container { padding: 1rem 0.5rem; }
-            .poem-section { padding: 1em 0.5em; }
-            .title { font-size: 2em; }
-            .section-title { font-size: 1.2em; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cantica Antiqua</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Uncial+Antiqua&display=swap" rel="stylesheet">
+  <!-- Optional: CSS Framework -->
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'EB Garamond', serif;
+      background: linear-gradient(to bottom, #1a1a1a, #111);
+      color: #eee;
+      line-height: 1.6;
+    }
+    header {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(0,0,0,0.7);
+    }
+    header h1 {
+      font-family: 'Uncial Antiqua', cursive;
+      font-size: 3rem;
+      margin: 0;
+      color: #f5d742;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    nav button {
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      background: #333;
+      color: #f5d742;
+      border: 1px solid #f5d742;
+      border-radius: 5px;
+      transition: 0.2s;
+    }
+    nav button:hover {
+      background: #f5d742;
+      color: #333;
+    }
+    main {
+      max-width: 900px;
+      margin: auto;
+      padding: 2rem;
+    }
+    section {
+      margin-bottom: 3rem;
+    }
+    .glossary {
+      border-bottom: 1px dotted #f5d742;
+      cursor: help;
+      position: relative;
+    }
+    .glossary:hover::after {
+      content: attr(data-meaning);
+      position: absolute;
+      background: rgba(0,0,0,0.85);
+      color: #f5d742;
+      padding: 0.25rem 0.5rem;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      top: 1.5rem;
+      left: 0;
+      z-index: 10;
+      border-radius: 3px;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(0,0,0,0.7);
+      color: #aaa;
+    }
+  </style>
 </head>
 <body>
-    <div class="main-container">
-        <h1 class="title">Cantica Antiqua</h1>
-        <p class="subtitle">The Old Saxon Text</p>
-        <hr class="ornamental-hr" />
 
-        <div>
-            <h2 class="section-title">About This Text</h2>
-            <p class="about-text">
-                <span class="dropcap">T</span>his document contains the full text of <span class="font-bold italic">Cantica Antiqua</span>. It is a work of great length and historical significance, presented in Old Saxon in a style reminiscent of the illuminated manuscripts of old.
-            </p>
-        </div>
+<header>
+  <h1>Cantica Antiqua</h1>
+  <nav>
+    <button onclick="switchLang('old')">Old Saxon</button>
+    <button onclick="switchLang('latin')">Latin</button>
+    <button onclick="switchLang('modern')">Modern English</button>
+  </nav>
+</header>
 
-        <hr class="ornamental-hr" />
-
-        <div>
-            <h2 class="section-title">Original Old Saxon Text</h2>
-            <div class="poem-section">
-                <!--
-                    Paste your entire Cantica Antiqua text below.
-                    You may use <span class="dropcap">F</span> for the first letter of each major section if desired.
-                    Example:
-                    <span class="dropcap">F</span>itt I: The World Dreamer's Slumber
-                    (rest of text...)
-                -->
-Aethlingasaga:
+<main>
+  <!-- Old Saxon Section -->
+  <section id="old" class="lang-section">
+    <h2>Old Saxon</h2>
+    <p>
+      <span class="glossary" data-meaning="doubt">Twēonunga</span> sēceþ sōþ-word<br>
+      Aethlingasaga:
 Fitt I: The World Dreamer's Slumber
 The beginning of the Cantica Antiqua
 Ēalā, hwaet! 
@@ -4975,8 +4940,39 @@ XII. Þā Saga of Cantica Antiqua And swā stōd þā Cantica Antiqua, ēald and
 And swā scīneþ hīe symle, swā ēa-strēam, swā heofonlic lēoht.
 
 
-            </div>
-        </div>
-    </div>
+    </p>
+  </section>
+
+  <!-- Latin Section -->
+  <section id="latin" class="lang-section" style="display:none;">
+    <h2>Latin</h2>
+    <p>
+      Dubitationem veritatem quaerit<br>
+      <!-- Drop in Latin text here -->
+    </p>
+  </section>
+
+  <!-- Modern English Section -->
+  <section id="modern" class="lang-section" style="display:none;">
+    <h2>Modern English</h2>
+    <p>
+      Doubt seeks truth-word<br>
+      <!-- Drop in Modern English text here -->
+    </p>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 Kairos Coder – AI Creative Director Portfolio</p>
+</footer>
+
+<script>
+  function switchLang(lang) {
+    const sections = document.querySelectorAll('.lang-section');
+    sections.forEach(s => s.style.display = 'none');
+    document.getElementById(lang).style.display = 'block';
+  }
+</script>
+
 </body>
 </html>
