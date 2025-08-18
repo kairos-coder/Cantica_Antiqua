@@ -14,35 +14,49 @@ body {
   color: #eee;
   line-height: 1.6;
 }
-
 header {
   text-align: center;
   padding: 2rem;
   background: rgba(0,0,0,0.7);
 }
-
 header h1 {
   font-family: 'Uncial Antiqua', cursive;
   font-size: 3rem;
   color: #f5d742;
   margin: 0;
 }
-
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+nav button {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  background: #333;
+  color: #f5d742;
+  border: 1px solid #f5d742;
+  border-radius: 5px;
+  transition: 0.2s;
+}
+nav button:hover {
+  background: #f5d742;
+  color: #333;
+}
 main {
   max-width: 1000px;
   margin: auto;
   padding: 2rem;
 }
-
-/* Old Saxon Columns */
+/* Parallel Columns for Old Saxon */
 #old-saxon-columns p {
-  column-count: 3;           /* Number of columns */
-  column-gap: 2rem;          /* Space between columns */
-  column-rule: 1px solid #f5d742; /* Optional vertical line between columns */
+  column-count: 3;
+  column-gap: 2rem;
+  column-rule: 1px solid #f5d742;
   text-align: justify;
-  hyphens: auto;             /* Better line breaks */
+  hyphens: auto;
 }
-
 /* Glossary Tooltips */
 .glossary {
   border-bottom: 1px dotted #f5d742;
@@ -62,19 +76,26 @@ main {
   z-index: 10;
   border-radius: 3px;
 }
-
+/* Mini-Fable Box */
+#fableBox {
+  background: rgba(0,0,0,0.5);
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 5px;
+}
+/* AI Illustration */
+.ai-img {
+  max-width: 100%;
+  border-radius: 5px;
+  margin: 1rem 0;
+}
 /* Responsive Columns */
 @media (max-width: 900px) {
-  #old-saxon-columns p {
-    column-count: 2;
-  }
+  #old-saxon-columns p { column-count: 2; }
 }
 @media (max-width: 600px) {
-  #old-saxon-columns p {
-    column-count: 1;
-  }
+  #old-saxon-columns p { column-count: 1; }
 }
-
 footer {
   text-align: center;
   padding: 2rem;
@@ -87,13 +108,18 @@ footer {
 
 <header>
   <h1>Cantica Antiqua</h1>
+  <nav>
+    <button onclick="playTTS()">🔊 Listen</button>
+    <button onclick="generateFable()">📜 Mini-Fable</button>
+  </nav>
 </header>
 
 <main>
+  <!-- Old Saxon Parallel Columns -->
   <section id="old-saxon-columns">
     <h2>Old Saxon Text</h2>
     <p>
-      Aethlingasaga:
+      <!-- Aethlingasaga:
 Fitt I: The World Dreamer's Slumber
 The beginning of the Cantica Antiqua
 Ēalā, hwaet! 
@@ -4935,16 +4961,51 @@ XI. Þā Ēce Wefan and Þā Nīwan Weavers Þā Cantica Antiqua stōd nū ēce,
 XII. Þā Saga of Cantica Antiqua And swā stōd þā Cantica Antiqua, ēald and nīwe, gebunden and flōwende, Þā saga of frumsceafte, of wyrd-webbe, of lufu and lār, Of Mistral and Word-Weaver, of twēonung-pēaras and syntþēsis, Of rīcum and rūnum, of flōwas and weoruld-ēa.
 And swā scīneþ hīe symle, swā ēa-strēam, swā heofonlic lēoht.
 
-
+ -->
       <span class="glossary" data-meaning="doubt">Twēonunga</span> sēceþ sōþ-word.<br>
-      <!-- Continue with your full text... -->
+      <!-- Continue full text... -->
     </p>
+  </section>
+
+  <!-- Mini-Fable Section -->
+  <section>
+    <div id="fableBox"></div>
+    <img id="fableImg" class="ai-img" src="" alt="AI Illustration" style="display:none;">
   </section>
 </main>
 
 <footer>
   <p>© 2025 Kairos Coder – AI Creative Director Portfolio</p>
 </footer>
+
+<script>
+// TTS Narration
+function playTTS() {
+  const text = document.getElementById('old-saxon-columns').innerText;
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'en-US'; // Adjust for Old Saxon TTS if available
+  speechSynthesis.speak(utterance);
+}
+
+// Mini-Fable Generator
+const fables = [
+  "A forest spirit whispered secrets to the lost traveler...",
+  "The owl guided the young warrior through the misty glen...",
+  "Beneath the ancient stone, hidden truths awaited discovery..."
+];
+const aiImages = [
+  "https://placekitten.com/400/200", // Replace with AI-generated illustrations
+  "https://placebear.com/400/200",
+  "https://picsum.photos/400/200"
+];
+function generateFable() {
+  const idx = Math.floor(Math.random()*fables.length);
+  document.getElementById('fableBox').innerText = fables[idx];
+  const imgEl = document.getElementById('fableImg');
+  imgEl.src = aiImages[idx];
+  imgEl.style.display = 'block';
+}
+</script>
 
 </body>
 </html>
